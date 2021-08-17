@@ -13,15 +13,13 @@ int test() {
     return -3;
   }
 
-  const struct Bar *const_bar;
-  // This is just warning
-  if (foo_get_bar_mut(foo, &const_bar) != SUCCESS) {
+  struct BarReference bar_ref;
+  if (foo_get_bar(foo, &bar_ref) != SUCCESS) {
     return -4;
   }
 
   struct Bar *bar;
-  // This is just warning
-  if (foo_get_bar(foo, &bar) != SUCCESS) {
+  if (foo_get_bar_by_copy(foo, &bar) != SUCCESS) {
     return -4;
   }
 

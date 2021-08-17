@@ -36,12 +36,8 @@ int foo_set_value(struct Foo *foo, const int value) {
   return Wrap([&] { foo->setValue(value); });
 }
 
-int foo_get_bar_mut(struct Foo *foo, struct Bar **bar) {
-  return Wrap([&] { *bar = &foo->getBar(); });
-}
-
-int foo_get_bar(const struct Foo *foo, const struct Bar **bar) {
-  return Wrap([&] { *bar = &foo->getBar(); });
+int foo_get_bar(struct Foo *foo, struct BarReference *bar_ref) {
+  return Wrap([&] { bar_ref->bar = &foo->getBar(); });
 }
 
 int foo_get_bar_by_copy(const struct Foo *foo, struct Bar **bar) {

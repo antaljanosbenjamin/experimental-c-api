@@ -12,6 +12,10 @@ extern "C" {
 struct Foo;
 struct Bar;
 
+struct BarReference {
+  struct Bar *bar;
+};
+
 int foo_create(struct Foo **foo);
 
 int foo_get_value(const struct Foo *foo, int *value);
@@ -25,8 +29,7 @@ int foo_set_value(struct Foo *foo, const int value);
 // be freed by the user. Alternatively to the current approach the mutable
 // functions could return a copy, but I don't think that it would the API
 // better, but worse.
-int foo_get_bar_mut(struct Foo *foo, struct Bar **bar);
-int foo_get_bar(const struct Foo *foo, const struct Bar **bar);
+int foo_get_bar(struct Foo *foo, struct BarReference *bar);
 
 // This is similar to getting a vertex, because the returned value is newly
 // contruscted
